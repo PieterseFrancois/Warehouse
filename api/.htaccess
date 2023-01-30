@@ -1,0 +1,17 @@
+DirectoryIndex index.php
+
+#RewriteOptions inherit
+
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
+RewriteCond %{REQUEST_FILENAME}  -f [OR]
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_FILENAME} !-d [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*)$ index.php [L,QSA]
+
+<IfModule mod_alias.c>
+    RedirectMatch 204 favicon.ico
+</IfModule>
