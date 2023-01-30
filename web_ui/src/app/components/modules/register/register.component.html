@@ -1,0 +1,185 @@
+<section class="bg-light">
+    <!--page body-->
+    <div class="container py-5 h-100">
+
+        <!--add single row with single column which will hold card-->
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card">
+
+                    <!--row with two columns for picture and form-->
+                    <div class="row g-0">
+
+                        <!--picture-->
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="assets/images/register.png" class="img-fluid h-100"/>
+                        </div>
+
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+
+                                <!--Back to home-->
+                                <div class="mb-4 right-align">
+                                    <p class="h6 fw-light">
+                                        <a routerLink="/" class="alert-link">
+                                            <i class="bi bi-arrow-left-short"></i>
+                                            Back to home
+                                        </a>
+                                    </p>
+                                </div>
+
+                                <!--heading-->
+                                <div class="d-flex align-items-center mb-3 pb-1">
+                                    <p class="h1 fw-bold">
+                                        <i class="bi bi-person-add"></i>
+                                        Register
+                                    </p>
+                                </div>
+                              
+                                <!--form-->
+                                <form #registerForm="ngForm" (ngSubmit)="registerUser( registerForm.value )" >
+
+                                    <!--subtext-->
+                                    <h5 class="fw-normal mb-3 pb-3">Register your new user account</h5>
+
+                                    <!--name-->
+                                    <div class="form-floating mb-3">
+                                        <!--input box-->
+                                        <input type="text"
+                                               id="register_name"
+                                               class="form-control form-control-lg"
+                                               name="name"
+                                               ngModel
+                                               #name="ngModel"
+                                               required
+                                               maxlength="50"
+                                             />
+
+                                        <!--label-->
+                                        <label for="register_name"><i class="bi bi-person-fill"></i> Name</label>
+
+                                        <!--error messages-->
+                                        <div *ngIf="name.invalid && name.touched" class="alert alert-danger">
+                                            <div *ngIf="name.errors?.['required']">Name is a required field</div>
+                                            <div *ngIf="name.errors?.['maxlength']">Name cannot exceed 50 characters</div>
+                                            <div *ngIf="name.errors?.['pattern']">Name contains invalid characters</div> 
+                                        </div>
+
+                                    </div>
+
+                                    <!--email-->
+                                    <div class="form-floating mb-4">
+                                        <!--input box-->
+                                        <input type="email"
+                                               id="register_email"
+                                               class="form-control form-control-lg"
+                                               name="email"
+                                               ngModel
+                                               #email="ngModel"
+                                               required
+                                               email
+                                               minlength="3"
+                                               maxlength="256" />
+
+                                        <!--label-->
+                                        <label for="register_email"><i class="bi bi-envelope-fill"></i> Email address</label>
+
+                                        <!--error messages-->
+                                        <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
+                                            <div *ngIf="email.errors?.['required']">Email address is a required field</div>
+                                            <div *ngIf="email.errors?.['email']">Invalid email address</div>
+                                            <div *ngIf="email.errors?.['minlength']">Email address should be atleast 3 characters</div>
+                                            <div *ngIf="email.errors?.['maxlength']">Email address cannot exceed 256 characters</div> 
+                                        </div>
+
+                                    </div>
+
+                                    <!--password-->
+                                    <div class="form-floating mb-4">
+                                        <!--input box-->
+                                        <input type="password" 
+                                               id="register_password" 
+                                               class="form-control form-control-lg"
+                                               name="password"
+                                               (ngModelChange)="passwordCompare( password.value, password_confirm.value )"
+                                               ngModel
+                                               #password="ngModel"
+                                               required
+                                               minlength="8"
+                                               maxlength="128" />
+
+                                        <!--label-->
+                                        <label for="register_password"><i class="bi bi-lock-fill"></i> Password</label>
+
+                                        <!--error messages-->
+                                        <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+                                            <div *ngIf="password.errors?.['required']">Password is a required field</div>
+                                            <div *ngIf="password.errors?.['minlength']">Password should be atleast 8 characters</div>
+                                            <div *ngIf="password.errors?.['maxlength']">Password cannot exceed 128 characters</div> 
+                                        </div>
+
+                                    </div>
+
+                                    <!--password confirmation-->
+                                    <div class="form-floating mb-4">
+                                        <!--input box-->
+                                        <input type="password"
+                                               id="register_password_confirm"
+                                               class="form-control form-control-lg"
+                                               name="password_confirm"
+                                               (ngModelChange)="passwordCompare( password.value, password_confirm.value )"
+                                               ngModel
+                                               #password_confirm="ngModel"
+                                               required
+                                               minlength="8"
+                                               maxlength="128" />
+
+                                        <!--label-->
+                                        <label for="register_password_confirm"><i class="bi bi-lock-fill"></i> Confirm password</label>
+
+                                        <!--error messages-->
+                                        <div *ngIf="( password_confirm.invalid || !(match) ) && password_confirm.touched" class="alert alert-danger">
+                                            <div *ngIf="password_confirm.errors?.['required']">Password is a required field</div>
+                                            <div *ngIf="!(match)">Passwords do not match</div>
+                                        </div>
+
+                                    </div>
+
+                                    <!--role-->
+                                    <div class="form-floating mb-4">
+                                        <!--dropdown-->
+                                        <select id="register_role" 
+                                                class="form-select" 
+                                                name="role"
+                                                ngModel
+                                                #role="ngModel"
+                                                required >
+                                            <option value="cashier">Cashier</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+
+                                        <!--label-->
+                                        <label for="register_role"><i class="bi bi-list"></i> Select role</label>
+
+                                        <!--error messages-->
+                                        <div *ngIf="role.invalid && role.touched" class="alert alert-danger">
+                                            <div *ngIf="role.errors?.['required']">Role is a required field</div>
+                                        </div>
+
+                                    </div>
+
+                                    <!--submit button-->
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit" [disabled]="registerForm.invalid || !match">Register</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

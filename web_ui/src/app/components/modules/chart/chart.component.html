@@ -1,0 +1,41 @@
+<section class="bg-light text-center">
+    <!--page body-->
+    <div class="container py-5 h-100">
+
+        <!--add single row with single column which will hold card-->
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card">                    
+                    <div class="card-body p-4 p-lg-5 text-black">
+
+                        <!--Back to home-->
+                        <div class="mb-4 right-align">
+                            <p class="h6 fw-light">
+                                <a routerLink="/" class="alert-link">
+                                    <i class="bi bi-arrow-left-short"></i>
+                                    Back to home
+                                </a>
+                            </p>
+                        </div>
+
+                        <!--heading-->
+                        <div class="align-items-center mb-3 pb-1">
+                            <p class="h1 fw-bold">
+                                <i class="bi bi-bar-chart-steps"></i>
+                                Product category vs quantity
+                            </p>
+                        </div>
+   
+                        <!--chart-->
+                        <div class="chart-container">
+                            <canvas id="category_quantity" >{{ chart }}</canvas>
+                        </div>
+
+                    </div>  
+
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</section>

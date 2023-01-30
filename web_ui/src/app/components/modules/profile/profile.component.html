@@ -1,0 +1,100 @@
+<section class="bg-light text-center">
+    <!--page body-->
+    <div class="container py-5 h-100">
+
+        <!--add single row with single column which will hold card-->
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card">
+
+                    <!--row with two columns for picture and form-->                       
+                    <div class="card-body p-4 p-lg-5 text-black">
+
+                        <!--Back to home-->
+                        <div class="mb-4 right-align">
+                            <p class="h6 fw-light">
+                                <a routerLink="/" class="alert-link">
+                                    <i class="bi bi-arrow-left-short"></i>
+                                    Back to home
+                                </a>
+                            </p>
+                        </div>
+
+                        <!--heading-->
+                        <div class="align-items-center mb-3 pb-1">
+                            <p class="h1 fw-bold">
+                                <i class="bi bi-person-circle"></i>
+                                Profile
+                            </p>
+                        </div>
+                              
+                        <!--form-->
+                        <form #profileForm="ngForm">
+
+                            <!--subtext-->
+                            <h5 class="fw-normal mb-3 pb-3">View and edit your details</h5>
+
+                            <div>
+                                <!--name-->
+                                <div class="form-floating mb-3">
+                                    <!--input box-->
+                                    <input type="text"
+                                        id="profile_name"
+                                        class="form-control form-control-lg"
+                                        name="name"
+                                        [(ngModel)]="new_name"
+                                        #name="ngModel"
+                                        required
+                                        maxlength="50" />
+
+                                    <!--label-->
+                                    <label for="profile_name"><i class="bi bi-person-fill"></i> Name</label>
+
+                                    <!--error messages-->
+                                    <div *ngIf="name.invalid && name.touched" class="alert alert-danger">
+                                        <div *ngIf="name.errors?.['required']">Name is a required field</div>
+                                        <div *ngIf="name.errors?.['maxlength']">Name cannot exceed 50 characters</div>
+                                        <div *ngIf="name.errors?.['pattern']">Name contains invalid characters</div> 
+                                    </div>
+                                </div>
+
+                                <!--email-->
+                                <div class="form-floating mb-4">
+                                    <!--input box-->
+                                    <input type="email"
+                                        id="profile_email"
+                                        class="form-control form-control-lg"
+                                        name="email"
+                                        [(ngModel)]="new_email"
+                                        #email="ngModel"
+                                        required
+                                        email
+                                        minlength="3"
+                                        maxlength="256" />
+
+                                    <!--label-->
+                                    <label for="profile_email"><i class="bi bi-envelope-fill"></i> Email address</label>
+
+                                    <!--error messages-->
+                                    <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
+                                        <div *ngIf="email.errors?.['required']">Email address is a required field</div>
+                                        <div *ngIf="email.errors?.['email']">Invalid email address</div>
+                                        <div *ngIf="email.errors?.['minlength']">Email address should be atleast 3 characters</div>
+                                        <div *ngIf="email.errors?.['maxlength']">Email address cannot exceed 256 characters</div> 
+                                    </div>
+                                </div>    
+                            </div>
+
+                            <!--buttons-->
+                            <div *ngIf="isChanged()" class="pt-1 mb-4">
+                                <button class="btn btn-primary btn-lg btn-block mx-3" (click)="save()" type="button" [disabled]="profileForm.invalid">Save</button>
+                                <button class="btn btn-dark btn-lg btn-block" (click)="cancel()" type="button">Cancel</button> 
+                            </div>
+
+                        </form>                            
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

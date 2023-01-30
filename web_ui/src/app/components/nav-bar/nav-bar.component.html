@@ -1,0 +1,62 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid bg-dark">
+        <!--website name-->
+        <div>
+            <a routerLink="/" class="navbar-brand h1 mb-0">{{ website_name }}</a>
+        </div>
+
+        <!--burger icon (from Bootstrap documentation)-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--navigation Items-->
+        <div class="collapse navbar-collapse mb-3 mb-lg-0" id="navbarSupportedContent">
+            <ul class="nav nav-pills me-auto">
+                <li class="nav-item">
+                    <div *ngIf="is_admin">
+                        <a class="nav-link" routerLink="{{ chart_route }}">{{ chart_page }}</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <div *ngIf="is_user">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">Products</a>
+                        <div class="dropdown-menu"> 
+                                <a class="dropdown-item" routerLink="{{ add_products_route }}">{{ add_products }}</a>
+                            <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" routerLink="{{ all_products_route }}">{{ all_products }}</a>
+                        </div>
+                    </div>
+                  </li>
+
+            </ul>
+            
+            <ul class="nav nav-pills">
+                <li class="nav-item m-1">
+                    <div *ngIf="is_user">
+                        <a class="nav-link" routerLink="{{ profile_route }}">{{ username }}  <i class="bi bi-person-circle"></i></a>
+                    </div>
+                </li>
+
+                <li class="nav-item m-1">
+                    <div *ngIf="!is_user">
+                        <button type="button" class="btn btn-primary" routerLink="{{ login_route }}">Login</button>
+                    </div>            
+                </li>
+                    
+                <li class="nav-item m-1">
+                    <div *ngIf="!is_user">
+                        <button type="button" class="btn btn-primary" routerLink="{{ register_route }}">Register</button>
+                    </div>
+                </li>
+
+                <li class="nav-item m-1">
+                    <div *ngIf="is_user">
+                        <button type="button" class="btn btn-primary" routerLink="/" (click)="user_state.logout()">Logout</button>
+                    </div>              
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,22 @@
+//@import "bootstrap"; 
+
+h4, h5 {
+    text-align: center;    
+}
+
+footer {
+    margin-top: auto;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%
+}
+
+/*
+i {
+    @include col-4;
+    @include col-sm-2;
+    @include h4;
+    @include align-self-center;
+    @include text-end;
+}*/

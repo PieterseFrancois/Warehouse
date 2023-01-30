@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+
+//Variable overrides
+$primary: #21b5a5;
+$enable-shadows: true;
+$prefix: "mo-";
+
+//Import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+form {
+    h5 {
+        letter-spacing: 1px;
+    }
+    
+    label {
+        font-size: large;
+        color: rgb(133, 130, 130);
+    }
+    
+    input.ng-invalid.ng-touched {
+        border: red 2px solid;
+    }
+    
+    input.ng-valid.ng-touched {
+        border: teal 2px solid;
+    }
+}
+
+.right-align {
+    text-align: right;
+}

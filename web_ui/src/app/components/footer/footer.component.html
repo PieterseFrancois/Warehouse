@@ -1,0 +1,57 @@
+<footer class="bg-primary">
+    <div class="container pt-3 pt-sm-0">
+        <div class="row h5">
+
+        <!--Company information-->        
+            <!--Address information-->
+            <address class="col-sm-4 align-self-center mb-0">
+                <div class="row">
+                    <div class="col-4 col-sm-2 h4 align-self-center text-end">
+                        <div class="row"><i class="bi bi-house-fill"></i></div>
+                    </div>
+
+                    <div class="col">
+                        <div class="row">{{ street }},</div>
+                        <div class="row">{{ suburb }},</div>
+                        <div class="row">{{ city }},</div>
+                        <div class="row">{{ postal_code }}</div>
+                    </div>
+                </div>
+            </address>
+
+            <!--Telephone number-->
+            <div class="col-sm-4 align-self-center">
+
+                <div class="row">
+                    <div class="col-4 col-sm-2 h4 align-self-center text-end"><i class="bi bi-telephone-fill"></i></div>
+                    <div class="col">{{ tel_number }}</div>
+                </div>
+
+            </div>
+
+            <!--Date and time-->
+            <div class="col-sm-4 align-self-center">
+
+                <!--Time-->
+                <div class="row py-3">
+                    <div class="col-4 col-sm-2 h4 align-self-center text-end"><i class="bi bi-clock-fill"></i></div>
+                    <div class="col">{{ date_time | date:"HH:mm:ss" }}</div>
+                </div>
+
+                <!--Date-->
+                <div class="row py-3">
+                    <div class="col-4 col-sm-2 h4 align-self-center text-end"><i class="bi bi-calendar"></i></div>
+                    <div class="col">{{ date_time | date:"YYYY-MM-dd"}}</div>
+                </div> 
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--Copyright info-->
+    <div class="text-center bg-dark text-white p-4">
+        © {{ copyright_date }} Copyright:
+        <a class="text-reset fw-bold" routerLink="/">{{ website_url }}</a>
+    </div>
+</footer>

@@ -1,0 +1,145 @@
+<section class="bg-light">
+    <!--page body-->
+    <div class="container py-5 h-100">
+
+        <!--add single row with single column which will hold card-->
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card">
+
+                    <!--row with two columns for picture and form-->
+                    <div class="row g-0">
+
+                        <!--picture-->
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="assets/images/boxes.jpg" class="img-fluid h-100"/>
+                        </div>
+
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+
+                                <!--Back to home-->
+                                <div class="mb-4 right-align">
+                                    <p class="h6 fw-light">
+                                        <a routerLink="/" class="alert-link">
+                                            <i class="bi bi-arrow-left-short"></i>
+                                            Back to home
+                                        </a>
+                                    </p>
+                                </div>
+
+                                <!--heading-->
+                                <div class="d-flex align-items-center mb-3 pb-1">
+                                    <p class="h1 fw-bold">
+                                        <i class="bi bi-plus-square"></i>
+                                        Product
+                                    </p>
+                                </div>
+                              
+                                <!--form-->
+                                <form #registerForm="ngForm" (ngSubmit)="addProduct( registerForm.value, registerForm )" >
+
+                                    <!--subtext-->
+                                    <h5 class="fw-normal mb-3 pb-3">Add a new product</h5>
+
+                                    <!--name-->
+                                    <div class="form-floating mb-3">
+                                        <!--input box-->
+                                        <input type="text"
+                                               id="product_name"
+                                               class="form-control form-control-lg"
+                                               name="name"
+                                               ngModel
+                                               #name="ngModel"
+                                               required
+                                               maxlength="50"
+                                             />
+
+                                        <!--label-->
+                                        <label for="product_name"><i class="bi bi-tag-fill"></i> Name</label>
+
+                                        <!--error messages-->
+                                        <div *ngIf="name.invalid && name.touched" class="alert alert-danger">
+                                            <div *ngIf="name.errors?.['required']">Name is a required field</div>
+                                            <div *ngIf="name.errors?.['maxlength']">Name cannot exceed 50 characters</div>
+                                            <div *ngIf="name.errors?.['pattern']">Name contains invalid characters</div> 
+                                        </div>
+
+                                    </div>
+
+                                    <!--category-->
+                                    <div class="form-floating mb-4">
+                                        <!--dropdown-->
+                                        <select id="product_category" 
+                                                class="form-select" 
+                                                name="category"
+                                                ngModel
+                                                #category="ngModel"
+                                                required >
+                                            <option value="Food">Food</option>
+                                            <option value="Clothes">Clothes</option>
+                                            <option value="Medicine">Medicine</option>
+                                            <option value="Household">Household</option>
+                                        </select>
+
+                                        <!--label-->
+                                        <label for="product_category"><i class="bi bi-list"></i> Select category</label>
+
+                                        <!--error messages-->
+                                        <div *ngIf="category.invalid && category.touched" class="alert alert-danger">
+                                            <div *ngIf="category.errors?.['required']">Category is a required field</div>
+                                        </div>
+
+                                    </div>
+
+                                    <!--quantity-->
+                                    <div class="form-floating mb-3">
+                                        <!--input box-->
+                                        <input type="number"
+                                               id="product_quantity"
+                                               class="form-control form-control-lg"
+                                               name="quantity"
+                                               ngModel
+                                               #quantity="ngModel"
+                                               required
+                                               min="1"
+                                               max="100"
+                                             />
+
+                                        <!--label-->
+                                        <label for="product_quantity"><i class="bi bi-123"></i> Quantity</label>
+
+                                        <!--error messages-->
+                                        <div *ngIf="quantity.invalid && quantity.touched" class="alert alert-danger">
+                                            <div *ngIf="quantity.errors?.['required']">Quantity is a required field</div>
+                                            <div *ngIf="quantity.errors?.['min']">Quantity cannot be less than one</div>
+                                            <div *ngIf="quantity.errors?.['max']">Quantity cannot exceed than 100</div>
+                                        </div>
+
+                                    </div>
+
+                                    <!--submit button-->
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit" [disabled]="registerForm.invalid">Add</button>
+                                    </div>
+
+                                </form>
+                                
+                                <!--view products-->
+                                <div class="mb-4 right-align">
+                                    <p class="h6 fw-light">
+                                        <a class="alert-link" routerLink="/{{ all_products_route }}">
+                                            View all products
+                                        </a>
+                                        
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
